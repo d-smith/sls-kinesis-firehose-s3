@@ -1,0 +1,31 @@
+service: kfs3
+
+custom:
+  stage: ${opt:stage, 'dev'}
+  serviceName: kfs3
+  S3BucketNameForFirehoseDestination: ${self:service}-${self:custom.stage}-kfs3-destination
+  Stream: ${self:service}-${self:custom.stage}-app-stream
+
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs12.x
+
+
+functions:
+  transform:
+    handler: handler.transform
+    name: ${self:service}-${self:custom.stage}-kfs3-transform-lambda
+    timeout: 60
+  
+
+
+resources:
+  - ${file(resources/s3-bucket.yml)}
+  - ${file(resources/firehose.yml)}
+  - ${file(resources/stream.yml)}
+
+ 
+#plugins:
+#  - serverless-pseudo-parameters

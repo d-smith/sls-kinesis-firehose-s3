@@ -1,0 +1,6 @@
+Resources:
+  appStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: ${self:custom.Stream}
+      ShardCount: 1
