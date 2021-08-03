@@ -3,7 +3,8 @@ service: kfs3
 custom:
   stage: ${opt:stage, 'dev'}
   serviceName: kfs3
-  S3BucketNameForFirehoseDestination: ${self:service}-${self:custom.stage}-kfs3-destination
+  #S3BucketNameForFirehoseDestination: ${self:service}-${self:custom.stage}-kfs3-destination
+  S3BucketNameForFirehoseDestination: ${env:FIREHOSE_DESTINATION_BUCKET}
   Stream: ${self:service}-${self:custom.stage}-app-stream
 
 
@@ -23,10 +24,8 @@ functions:
 
 
 resources:
-  - ${file(resources/s3-bucket.yml)}
-  - ${file(resources/firehose.yml)}
+#  - ${file(resources/s3-bucket.yml)}
   - ${file(resources/stream.yml)}
+  - ${file(resources/firehose.yml)}
 
  
-#plugins:
-#  - serverless-pseudo-parameters

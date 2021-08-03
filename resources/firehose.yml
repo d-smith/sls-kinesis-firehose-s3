@@ -87,6 +87,8 @@ Resources:
 
   FirehoseDeliveryStream:
     Type: AWS::KinesisFirehose::DeliveryStream
+    DependsOn: 
+      - StreamReaderPolicy
     Properties:
       DeliveryStreamName: ${self:service}-${self:custom.stage}-firehose-delivery-stream
       DeliveryStreamType: KinesisStreamAsSource
