@@ -112,7 +112,7 @@ Resources:
           SizeInMBs: 3
         CompressionFormat: UNCOMPRESSED
         ErrorOutputPrefix: error/pubrecord/!{firehose:error-output-type}/year=!{timestamp:YYYY}/month=!{timestamp:MM}/day=!{timestamp:dd}/
-        Prefix: pubrecord/year=!{timestamp:YYYY}/month=!{timestamp:MM}/day=!{timestamp:dd}/
+        Prefix: pubrecord/year=!{timestamp:YYYY}/month=!{timestamp:MM}/day=!{timestamp:dd}/hour=!{timestamp:HH}/
         RoleARN: 
           Fn::GetAtt: FirehoseDeliveryRole.Arn
         ProcessingConfiguration:
